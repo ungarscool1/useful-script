@@ -37,12 +37,12 @@ if [%natnetName%] == [] (
 	echo Le nom ne peut être vide
 	goto natname
 )
-echo Il est recommendé de prendre 10.0.2.0/24
+echo "Il est recommendé de prendre 10.0.2.0/24"
 :natIP
 set /p natnetIp="Ip du réseau: "
 if [%natnetIp%] == [] (
 	echo L'ip ne peut être vide
-	goto natname
+	goto natIP
 )
 :ipdhcp
 set /p ipdhcp="Ip du serveur dhcp: "
