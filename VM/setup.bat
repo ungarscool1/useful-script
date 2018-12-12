@@ -20,6 +20,7 @@ if [%vboxmanager%] == [] (
 echo Nous devons finalisé l'installation...
 powershell -Command "Start-BitsTransfer -Source https://download.virtualbox.org/virtualbox/5.2.22/Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack -Description \"Le téléchargement de l'extension Vbox\" -Destination Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack -DisplayName \"Téléchargement du pack d'extension VirtualBox\""
 %vboxmanager% extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack
+del Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack
 echo "Où voulez-vous enregistrer cette vm ?"
 set /p vboxLocation="Chemin: "
 if [%vboxLocation%] == [] (
