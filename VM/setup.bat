@@ -7,12 +7,10 @@ echo "Appuyer sur ENTRER pour accepter, ou CTRL+C pour quitter"
 pause > nul
 echo Téléchargement de VirtualBox...
 powershell -Command "Start-BitsTransfer -Source https://download.virtualbox.org/virtualbox/5.2.22/VirtualBox-5.2.22-126460-Win.exe -Destination VirtualBox-5.2.22-126460-Win.exe" 
-VirtualBox-5.2.22-126460-Win.exe 
-echo Appuyer sur ENTRER quand l'installation de VirtualBox est terminé !
-pause > nul
+VirtualBox-5.2.22-126460-Win.exe
+del VirtualBox-5.2.22-126460-Win.exe
 echo Paramètrage du pare-feu...
 netsh advfirewall firewall add rule name="VBox - Désactiver le réseau local" program="(VirtualBox.exe)" dir=out action=block profile=any interfacetype=lan
-pause
 cls
 echo "Où est situé l'installation de virtualbox ? "
 echo "Si vous n'avez pas changer le répertoire d'installation pour pouvez laisser vide
