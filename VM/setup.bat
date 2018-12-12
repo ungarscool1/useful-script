@@ -96,6 +96,10 @@ if [%vmDiskSize%] == [] (
 	echo Le nom de la machine ne peut être vide
 	goto vsDS
 )
+set /p vmCPUs="Nombre de coeurs (par défaut 1): "
+if [%vmCPUs%] == [] (
+	set vmCPU="1"
+)
 :vmR
 set /p vmRam="Taille de la Ram (en mb): "
 if [%vmRam%] == [] (
@@ -114,6 +118,8 @@ echo Création du disque virtuel
 %vboxmanager% createhd --filename %vmName%.vdi --size %vmDiskSize%
 echo Création de %vmName% sur %vmOS%
 %vboxmanager% createvm --name %vmName% --ostype %vmOS% --register
+echo Ajout de %vmCPUs% à %vmName%
+%vboxmanager% modifyvm %vmName% --cpus %vmCPUs%
 echo Attachement d'un contrôleur SATA à %vmName%
 %vboxmanager% storagectl %vmName% --name "SATA Controller" --add sata --controller IntelAHCI
 echo Attachement du disque à %vmName%
