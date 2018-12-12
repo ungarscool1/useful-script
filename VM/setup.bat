@@ -6,7 +6,7 @@ echo Avant de commencer, il faut exécuter se script sur ce PC 1 seule fois si v
 echo "Appuyer sur ENTRER pour accepter, ou CTRL+C pour quitter"
 pause > nul
 echo Téléchargement de VirtualBox...
-powershell -Command "Import-Module BitsTransfer; Start-BitsTransfert -source https://download.virtualbox.org/virtualbox/5.2.22/VirtualBox-5.2.22-126460-Win.exe -Destination VirtualBox-5.2.22-126460-Win.exe" 
+powershell -Command "Import-Module BitsTransfer; Start-BitsTransfert -Source https://download.virtualbox.org/virtualbox/5.2.22/VirtualBox-5.2.22-126460-Win.exe -Destination VirtualBox-5.2.22-126460-Win.exe" 
 VirtualBox-5.2.22-126460--Win.exe 
 echo Appuyer sur ENTRER quand l'installation de VirtualBox est terminé !
 pause > nul
