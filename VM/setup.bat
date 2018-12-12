@@ -5,8 +5,7 @@ title Assistant de création de vm et de nat Network
 echo Avant de commencer, il faut exécuter se script sur ce PC 1 seule fois si vous l'exécuter plusieurs fois il peut avoir des problèmes
 echo "Appuyer sur ENTRER pour accepter, ou CTRL+C pour quitter"
 pause > nul
-echo Téléchargement de VirtualBox...
-powershell -Command "Start-BitsTransfer -Source https://download.virtualbox.org/virtualbox/5.2.22/VirtualBox-5.2.22-126460-Win.exe -Destination VirtualBox-5.2.22-126460-Win.exe" 
+powershell -Command "Start-BitsTransfer -Source https://download.virtualbox.org/virtualbox/5.2.22/VirtualBox-5.2.22-126460-Win.exe -Description \"Le téléchargement de virtualbox est en cours...\" -DisplayName \"Téléchargement de VirtualBox\" -Destination VirtualBox-5.2.22-126460-Win.exe" 
 VirtualBox-5.2.22-126460-Win.exe
 del VirtualBox-5.2.22-126460-Win.exe
 echo Paramètrage du pare-feu...
@@ -18,6 +17,9 @@ set /p vboxmanager="Executable: "
 if [%vboxmanager%] == [] (
 	set vboxmanager="C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"
 )
+echo Nous devons finalisé l'installation...
+powershell -Command "Start-BitsTransfer -Source https://download.virtualbox.org/virtualbox/5.2.22/Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack -Description \"Le téléchargement de l'extension Vbox\" -Destination Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack -DisplayName \"Téléchargement du pack d'extension VirtualBox\""
+%vboxmanager% extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.22.vbox-extpack
 echo "Où voulez-vous enregistrer cette vm ?"
 set /p vboxLocation="Chemin: "
 if [%vboxLocation%] == [] (
@@ -106,7 +108,7 @@ if [%vmRam%] == [] (
 )
 :vmISO
 set /p vmISO="Emplacement de l'image ISO de %vmOS%"
-if not exist [%vmISO%] (
+if [%vmISO%] == [] (
 	echo Le l'image iso d'installation de la machine ne peut être vide
 	goto vmISO
 )
